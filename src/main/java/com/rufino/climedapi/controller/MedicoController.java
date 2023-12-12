@@ -1,6 +1,11 @@
 package com.rufino.climedapi.controller;
 
 import com.rufino.climedapi.dto.MedicoDTO;
+import com.rufino.climedapi.model.Endereco;
+import com.rufino.climedapi.model.Medico;
+import com.rufino.climedapi.service.MedicoService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/medicos")
 public class MedicoController {
 
+    @Autowired
+    private MedicoService medicoService;
+
     @PostMapping
     public void cadastrar(@RequestBody MedicoDTO dto){
-        System.out.println(dto);
+        medicoService.salvar(dto);
     }
 }
