@@ -19,6 +19,9 @@ public record MedicoDTO(
         @Pattern(regexp = "\\d{4,6}")   //Somente digitos, e minimo de 4 e maximo de 6 digitos
         String crm,
 
+        @NotBlank
+        String telefone,
+
         @NotNull
         Especialidade especialidade,
 

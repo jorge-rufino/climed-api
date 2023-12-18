@@ -19,8 +19,9 @@ public class MedicoService {
     @Autowired
     private MedicoRepository repository;
 
+    //Alterado para corrigir o valor "null" após adicionar "telefone"
     @Autowired
-    private MedicoMapper medicoMapper;
+    private MedicoMapper medicoMapper = MedicoMapper.INSTANCE;
 
     @Transactional
     public Medico salvar(MedicoDTO dto){

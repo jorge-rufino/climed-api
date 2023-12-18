@@ -6,6 +6,7 @@ public record MedicoReduzidoDTO(
         String nome,
         String email,
         String crm,
+        String telefone,
         Especialidade especialidade
         ) {
 }
