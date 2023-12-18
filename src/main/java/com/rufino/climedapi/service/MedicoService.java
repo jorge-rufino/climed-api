@@ -7,6 +7,7 @@ import com.rufino.climedapi.repository.MedicoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MedicoService {
@@ -14,6 +15,7 @@ public class MedicoService {
     @Autowired
     private MedicoRepository repository;
 
+    @Transactional
     public Medico salvar(MedicoDTO dto){
         Medico newMedico = new Medico();
         Endereco newEndereco = new Endereco();
@@ -23,7 +25,6 @@ public class MedicoService {
 
         newMedico.setEndereco(newEndereco);
 
-        System.out.println(newMedico);
         return repository.save(newMedico);
     }
 }
