@@ -1,6 +1,7 @@
 package com.rufino.climedapi.service;
 
 import com.rufino.climedapi.dto.MedicoDTO;
+import com.rufino.climedapi.dto.MedicoReduzidoDTO;
 import com.rufino.climedapi.mapper.MedicoMapper;
 import com.rufino.climedapi.model.Endereco;
 import com.rufino.climedapi.model.Medico;
@@ -9,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class MedicoService {
@@ -24,5 +27,9 @@ public class MedicoService {
         Medico newMedico = medicoMapper.toMedicoEntity(dto);
 
         return repository.save(newMedico);
+    }
+
+    public List<MedicoReduzidoDTO> listar(){
+        return medicoMapper.toCollectionDto(repository.findAll());
     }
 }
