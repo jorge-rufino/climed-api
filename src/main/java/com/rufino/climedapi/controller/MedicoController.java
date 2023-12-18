@@ -6,6 +6,7 @@ import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.service.MedicoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class MedicoController {
     private MedicoService medicoService;
 
     @PostMapping
-    public void cadastrar(@RequestBody MedicoDTO dto){
-        medicoService.salvar(dto);
+    public ResponseEntity<Medico> cadastrar(@RequestBody MedicoDTO dto){
+        return ResponseEntity.ok(medicoService.salvar(dto));
     }
 }
