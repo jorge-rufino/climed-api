@@ -1,6 +1,7 @@
 package com.rufino.climedapi.service;
 
 import com.rufino.climedapi.dto.MedicoDTO;
+import com.rufino.climedapi.mapper.MedicoMapper;
 import com.rufino.climedapi.model.Endereco;
 import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.repository.MedicoRepository;
@@ -15,15 +16,12 @@ public class MedicoService {
     @Autowired
     private MedicoRepository repository;
 
+    @Autowired
+    private MedicoMapper medicoMapper;
+
     @Transactional
     public Medico salvar(MedicoDTO dto){
-        Medico newMedico = new Medico();
-        Endereco newEndereco = new Endereco();
-
-        BeanUtils.copyProperties(dto.endereco(), newEndereco);
-        BeanUtils.copyProperties(dto, newMedico,"id");
-
-        newMedico.setEndereco(newEndereco);
+        Medico newMedico = medicoMapper.toMedicoEntity(dto);
 
         return repository.save(newMedico);
     }
