@@ -1,12 +1,15 @@
 package com.rufino.climedapi.dto;
 
 import com.rufino.climedapi.model.Especialidade;
+import lombok.Getter;
+import lombok.Setter;
 
-public record MedicoReduzidoDTO(
-        String nome,
-        String email,
-        String crm,
-        String telefone,
-        Especialidade especialidade
-        ) {
+@Getter
+@Setter
+public class MedicoReduzidoDTO {
+    private String nome;
+    private String emai;
+    private String crm;
+    private String telefone;
+    private Especialidade especialidade;
 }

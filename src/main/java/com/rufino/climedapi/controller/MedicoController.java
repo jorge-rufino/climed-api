@@ -2,11 +2,9 @@ package com.rufino.climedapi.controller;
 
 import com.rufino.climedapi.dto.MedicoDTO;
 import com.rufino.climedapi.dto.MedicoReduzidoDTO;
-import com.rufino.climedapi.model.Endereco;
 import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.service.MedicoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

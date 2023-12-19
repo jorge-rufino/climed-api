@@ -1,6 +1,5 @@
 package com.rufino.climedapi.model;
 
-import com.rufino.climedapi.dto.EnderecoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
