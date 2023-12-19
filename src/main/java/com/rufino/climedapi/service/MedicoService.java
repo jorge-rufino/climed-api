@@ -21,7 +21,7 @@ public class MedicoService {
 
     //Alterado para corrigir o valor "null" após adicionar "telefone"
     @Autowired
-    private MedicoMapper medicoMapper = MedicoMapper.INSTANCE;
+    private MedicoMapper medicoMapper;
 
     @Transactional
     public Medico salvar(MedicoDTO dto){
