@@ -1,28 +1,30 @@
 package com.rufino.climedapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
-public record EnderecoDTO(
-        @NotBlank
-        String logradouro,
+@Getter
+@Setter
+public class EnderecoDTO {
+    @NotBlank
+    private String logradouro;
 
-        @NotBlank
-        String bairro,
+    @NotBlank
+    private String bairro;
 
-        @NotBlank
-        @Pattern(regexp = "\\d{5}-\\d{3}")
-        String cep,
+    @NotBlank
+    @Pattern(regexp = "\\d{5}-\\d{3}")
+    private String cep;
 
-        @NotBlank
-        String cidade,
+    @NotBlank
+    private String cidade;
 
-        @NotBlank
-        String uf,
+    @NotBlank
+    private String uf;
 
-        String complemento,
+    private String complemento;
 
-        String numero
-) {
+    private String numero;
 }

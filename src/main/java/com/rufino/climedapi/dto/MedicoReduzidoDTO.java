@@ -8,8 +8,7 @@ import lombok.Setter;
 @Setter
 public class MedicoReduzidoDTO {
     private String nome;
-    private String emai;
+    private String email;
     private String crm;
-    private String telefone;
     private Especialidade especialidade;
 }
