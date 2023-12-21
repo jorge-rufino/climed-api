@@ -6,6 +6,9 @@ import com.rufino.climedapi.mapper.MedicoMapper;
 import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +30,7 @@ public class MedicoService {
         return repository.save(newMedico);
     }
 
-    public List<MedicoReduzidoDTO> listar(){
-        return medicoMapper.toCollectionDto(repository.findAll());
+    public Page<MedicoReduzidoDTO> listar(Pageable pageable){
+        return repository.findAll(pageable).map(medico -> medicoMapper.toReduzidoDto(medico));
     }
 }

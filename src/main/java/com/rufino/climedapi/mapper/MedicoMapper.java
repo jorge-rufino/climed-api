@@ -10,5 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MedicoMapper {
     Medico toMedicoEntity(MedicoDTO medicoDTO);
-    List<MedicoReduzidoDTO> toCollectionDto(List<Medico> medicos);
+    List<MedicoReduzidoDTO> toCollectionReduzidoDto(List<Medico> medicos);
+    MedicoReduzidoDTO toReduzidoDto(Medico medico);
 }
