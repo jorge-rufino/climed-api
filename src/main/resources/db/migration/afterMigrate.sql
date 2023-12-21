@@ -1,12 +1,14 @@
 set foreign_key_checks = 0;
 
-lock tables medicos write;
+lock tables medicos write, pacientes write;
 
 delete from medicos;
+delete from pacientes;
 
 set foreign_key_checks = 1;
 
 alter table medicos auto_increment = 1;
+alter table pacientes auto_increment = 1;
 
 # Mok Medicos
 insert into medicos (nome, email, crm, especialidade,telefone,logradouro,bairro,cep,complemento,numero,uf,cidade)
@@ -29,6 +31,12 @@ VALUES
     ("Graiden Paiva","mauris.molestie.pharetra@icloud.com","865223","CARDIOLOGIA","28797-3812","Av. Almirante Barroso","Centro","97913-514","3871","PA","Belem"),
     ("Damon Soares","nulla.donec@yahoo.net","588236","ORTOPEDIA","76361-6424","Rua General Gurjao","Braz","25412-551","9072","PA","Marituba"),
     ("Allistair Diniz","sed.facilisis@yahoo.edu","134674","CARDIOLOGIA","62662-3887","Av. Gentil Bitencourt","Coqueiro","58986-871","7416","PA","Belem");
+
+insert into pacientes (nome, email, cpf, telefone,logradouro,bairro,cep, numero,uf,cidade)
+values
+    ("Antonio Lima","antonio@icloud.net","11122233344", "44012-1522","Rod.Br 316","Reduto","61140-880","181","PA","Belem"),
+    ("Julia Rufino","julia@hotmail.net","11222213345", "95212-1522","Almirante Barros","Reduto","61140-880","500","PA","Marituba"),
+    ("Nayara Sousa","nay@hotmail.net","00221561334", "95500-1522","Visconde Sousa","Centro","61140-880","505","PA","Benevides");
 
 
 unlock tables;
