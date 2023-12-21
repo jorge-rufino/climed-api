@@ -6,9 +6,9 @@ import com.rufino.climedapi.mapper.PacienteMapper;
 import com.rufino.climedapi.model.Paciente;
 import com.rufino.climedapi.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PacienteService {
@@ -23,7 +23,7 @@ public class PacienteService {
         return repository.save(pacienteMapper.toPacienteEntity(pacienteDTO));
     }
 
-    public List<PacienteReduzidoDTO> listar(){
-        return pacienteMapper.toCollectionReduzidoDto(repository.findAll());
+    public Page<PacienteReduzidoDTO> listar(Pageable pageable){
+        return repository.findAll(pageable).map(paciente -> pacienteMapper.toReduzidoDto(paciente));
     }
 }

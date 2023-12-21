@@ -11,4 +11,5 @@ import java.util.List;
 public interface PacienteMapper {
     Paciente toPacienteEntity(PacienteDTO pacienteDTO);
     List<PacienteReduzidoDTO> toCollectionReduzidoDto(List<Paciente> pacientes);
+    PacienteReduzidoDTO toReduzidoDto (Paciente paciente);
 }

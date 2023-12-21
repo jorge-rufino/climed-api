@@ -6,11 +6,12 @@ import com.rufino.climedapi.model.Paciente;
 import com.rufino.climedapi.service.PacienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -26,7 +27,7 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PacienteReduzidoDTO>> listar(){
-        return ResponseEntity.ok().body(pacienteService.listar());
+    public Page<PacienteReduzidoDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
+        return pacienteService.listar(pageable);
     }
 }
