@@ -2,6 +2,8 @@ package com.rufino.climedapi.service;
 
 import com.rufino.climedapi.dto.MedicoDTO;
 import com.rufino.climedapi.dto.MedicoReduzidoDTO;
+import com.rufino.climedapi.exception.EmailDuplicadoException;
+import com.rufino.climedapi.exception.EntidadeDuplicadaException;
 import com.rufino.climedapi.mapper.MedicoMapper;
 import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.repository.MedicoRepository;
@@ -22,6 +24,15 @@ public class MedicoService {
 
     @Transactional
     public Medico salvar(MedicoDTO dto){
+
+        if(repository.existsByEmail(dto.getEmail())){
+            throw new EmailDuplicadoException("E-mail (" + dto.getEmail() + ") já está cadastrado no sistema.");
+        }
+
+        if(repository.existsByCrm(dto.getCrm())){
+            throw new EntidadeDuplicadaException("Crm nº "+ dto.getCrm()+" já está cadastrado no sistema.");
+        }
+
         Medico newMedico = medicoMapper.toMedicoEntity(dto);
 
         return repository.save(newMedico);
