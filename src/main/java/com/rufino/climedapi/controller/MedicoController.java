@@ -1,5 +1,6 @@
 package com.rufino.climedapi.controller;
 
+import com.rufino.climedapi.dto.MedicoAtualizarDTO;
 import com.rufino.climedapi.dto.MedicoDTO;
 import com.rufino.climedapi.dto.MedicoReduzidoDTO;
 import com.rufino.climedapi.model.Medico;
@@ -28,5 +29,12 @@ public class MedicoController {
     @GetMapping
     public Page<MedicoReduzidoDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pageable){
         return medicoService.listar(pageable);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Medico> atualizar(@RequestBody MedicoAtualizarDTO dto, @PathVariable Long id){
+        Medico medico = medicoService.atualizar(dto, id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(medico);
     }
 }

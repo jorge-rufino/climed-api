@@ -1,15 +1,17 @@
 package com.rufino.climedapi.mapper;
 
+import com.rufino.climedapi.dto.MedicoAtualizarDTO;
 import com.rufino.climedapi.dto.MedicoDTO;
 import com.rufino.climedapi.dto.MedicoReduzidoDTO;
 import com.rufino.climedapi.model.Medico;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-import java.util.List;
-
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface MedicoMapper {
     Medico toMedicoEntity(MedicoDTO medicoDTO);
-    List<MedicoReduzidoDTO> toCollectionReduzidoDto(List<Medico> medicos);
     MedicoReduzidoDTO toReduzidoDto(Medico medico);
+
+    void updateMedico(MedicoAtualizarDTO medicoAtualizarDTO, @MappingTarget Medico medico);
 }

@@ -42,6 +42,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(problema);
     }
 
+    @ExceptionHandler(EntidadeNaoExisteException.class)
+    public ResponseEntity<?> handlerEntidadeNaoExisteException(EntidadeNaoExisteException e) {
+
+        Problema problema = problemaFactory(HttpStatus.NOT_FOUND.value(), e.getMessage(), null);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problema);
+    }
+
     //Validaçao do @Valid
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {

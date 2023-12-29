@@ -1,9 +1,11 @@
 package com.rufino.climedapi.service;
 
+import com.rufino.climedapi.dto.MedicoAtualizarDTO;
 import com.rufino.climedapi.dto.MedicoDTO;
 import com.rufino.climedapi.dto.MedicoReduzidoDTO;
 import com.rufino.climedapi.exception.EmailDuplicadoException;
 import com.rufino.climedapi.exception.EntidadeDuplicadaException;
+import com.rufino.climedapi.exception.EntidadeNaoExisteException;
 import com.rufino.climedapi.mapper.MedicoMapper;
 import com.rufino.climedapi.model.Medico;
 import com.rufino.climedapi.repository.MedicoRepository;
@@ -40,5 +42,17 @@ public class MedicoService {
 
     public Page<MedicoReduzidoDTO> listar(Pageable pageable){
         return repository.findAll(pageable).map(medico -> medicoMapper.toReduzidoDto(medico));
+    }
+
+    public Medico buscarPorId(Long id){
+        return repository.findById(id).orElseThrow(() -> new EntidadeNaoExisteException("Médico de ID " + id + " não existe!"));
+    }
+
+    @Transactional
+    public Medico atualizar(MedicoAtualizarDTO dto, Long id){
+        Medico medico = buscarPorId(id);
+        medicoMapper.updateMedico(dto, medico);
+
+        return repository.save(medico);
     }
 }
