@@ -32,9 +32,15 @@ public class MedicoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody MedicoAtualizarDTO dto, @PathVariable Long id){
+    public ResponseEntity<Void > atualizar(@RequestBody MedicoAtualizarDTO dto, @PathVariable Long id){
         Medico medico = medicoService.atualizar(dto, id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id){
+        medicoService.deletar(id);
+        return ResponseEntity.ok().body("Médico excluído com sucesso.");
     }
 }

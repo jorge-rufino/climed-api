@@ -36,12 +36,13 @@ public class MedicoService {
         }
 
         Medico newMedico = medicoMapper.toMedicoEntity(dto);
+        newMedico.setAtivo(true);
 
         return repository.save(newMedico);
     }
 
     public Page<MedicoReduzidoDTO> listar(Pageable pageable){
-        return repository.findAll(pageable).map(medico -> medicoMapper.toReduzidoDto(medico));
+        return repository.findAllByAtivoTrue(pageable).map(medico -> medicoMapper.toReduzidoDto(medico));
     }
 
     public Medico buscarPorId(Long id){
@@ -54,5 +55,11 @@ public class MedicoService {
         medicoMapper.updateMedico(dto, medico);
 
         return repository.save(medico);
+    }
+
+    @Transactional
+    public void deletar(Long id){
+        var medico = buscarPorId(id);
+        medico.setAtivo(false);
     }
 }
