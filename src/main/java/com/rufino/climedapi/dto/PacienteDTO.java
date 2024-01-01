@@ -1,7 +1,7 @@
 package com.rufino.climedapi.dto;
 
-import com.rufino.climedapi.model.Endereco;
 import jakarta.persistence.Embedded;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -25,5 +25,6 @@ public class PacienteDTO {
     private String telefone;
 
     @Embedded
-    private Endereco endereco;
+    @Valid
+    private EnderecoDTO endereco;
 }
