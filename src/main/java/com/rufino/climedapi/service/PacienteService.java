@@ -54,7 +54,7 @@ public class PacienteService {
     }
 
     public Paciente buscarPorId(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntidadeNaoExisteException("Paciente de ID " + id + " não existe!"));
+        return repository.findByIdAndAtivoTrue(id).orElseThrow(() -> new EntidadeNaoExisteException("Paciente de ID " + id + " não existe!"));
     }
 
     @Transactional

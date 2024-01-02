@@ -6,11 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
     boolean existsByEmail(String email);
     boolean existsByCrm(String crm);
     Page<Medico> findAllByAtivoTrue(Pageable pageable);
+    Optional<Medico> findByIdAndAtivoTrue(Long id);
 }
 
