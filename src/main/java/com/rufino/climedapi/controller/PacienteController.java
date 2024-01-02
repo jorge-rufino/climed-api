@@ -37,4 +37,11 @@ public class PacienteController {
         Paciente paciente = pacienteService.atualizar(pacienteDto, id);
         return ResponseEntity.ok(paciente);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id){
+        pacienteService.deletar(id);
+
+        return ResponseEntity.ok().body("Paciente excluído com sucesso!");
+    }
 }
